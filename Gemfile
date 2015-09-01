@@ -13,6 +13,8 @@ gem 'figaro'
 
 gem 'polylines'
 
+gem 'httparty'
+
 
 
 # To use ActiveModel has_secure_password

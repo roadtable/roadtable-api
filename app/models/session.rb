@@ -6,5 +6,8 @@ class Session
   field :route, type: Hash
   field :restaurants, type: Hash
 
-  
+  def get_restaurants
+  end
+
+
 end
