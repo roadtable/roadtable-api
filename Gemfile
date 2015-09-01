@@ -9,6 +9,9 @@ gem 'spring', :group => :development
 
 gem 'mongoid', '~> 5.0.0.beta'
 
+gem 'figaro'
+
+gem 'polylines'
 
 
 
