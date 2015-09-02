@@ -9,13 +9,17 @@ class SessionsController < ApplicationController
   def create
     @session = Session.new(session_params)
     @session.route = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + @session.origin + '&destination=' + @session.destination)
+
     # Finds polyline string in route json
     polyline = @session.route["routes"].last["overview_polyline"]["points"]
-    # Return an array of polypoint arrays [lat,long]
+
+    # Creates an array of polypoint arrays [lat,long]
     polypoints = Polylines::Decoder.decode_polyline(polyline)
+
     @session.get_restaurants(polypoints)
+
     if @session.save
-      render json: @session.restaurants
+      render json: @session
     else
       render json: "The origin/destination is invalid."
     end

@@ -6,21 +6,19 @@ class Session
   field :route, type: Hash
   field :restaurants, type: Hash, default: {}
 
-  # def get_restaurants(points)
-  #   points.each do |point_array|
-  #     # Convert point array to hash
-  #     point_hash = { latitude: point_array.first, longitude: point_array.last }
-  #     point_results = Yelp.client.search_by_coordinates(point_hash)
-  #     self.restaurants += point_results.businesses
-  #   end
-  # end
-
+  # Gets five restaurants near every nth poly point
+  # Converts data to hash
   def get_restaurants(points)
     i = 0
+    increment = 10
     while i < points.length
       # Convert point array into hash
       point_hash = { latitude: points[i].first, longitude: points[i].last }
+
+      # Returns BurstStruct object that Yelp creates
       point_results = Yelp.client.search_by_coordinates(point_hash, { limit: 5 })
+
+      # Reformat that Yelp object into hash with only the data we need
       point_results.businesses.each do |restaurant|
         self.restaurants[restaurant.name] = {
           rating: restaurant.rating,
@@ -32,7 +30,7 @@ class Session
           display_address: restaurant.respond_to?(:display_address) ? restaurant.display_address : "",
         }
       end
-      i += 10
+      i += increment
     end
   end
 
