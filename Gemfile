@@ -9,3 +9,4 @@ gem 'figaro'
 gem 'polylines'
 gem 'httparty'
 gem 'yelp', require: 'yelp'
+gem 'rails_12factor', group: :production
