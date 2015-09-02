@@ -13,8 +13,9 @@ class SessionsController < ApplicationController
     polyline = @session.route["routes"].last["overview_polyline"]["points"]
     # Return an array of polypoint arrays [lat,long]
     polypoints = Polylines::Decoder.decode_polyline(polyline)
+    @session.get_restaurants(polypoints)
     if @session.save
-      render json: @session
+      render json: @session.restaurants
     else
       render json: "The origin/destination is invalid."
     end
