@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   end
 
   def test
-    render json: Session.all
+    render json: Session.all[0]
   end
 
   private
