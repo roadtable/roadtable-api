@@ -24,7 +24,7 @@ class Session
           name: restaurant.name,
           rating: restaurant.rating,
           display_phone: restaurant.respond_to?(:display_phone) ? restaurant.phone : "",
-          categories: restaurant.respond_to?(:categories) ? restaurant.categories : [],
+          categories: restaurant.respond_to?(:categories) ? categories_to_string(restaurant.categories) : "",
           mobile_url: restaurant.respond_to?(:mobile_url) ? restaurant.mobile_url : "",
           rating_img_url: restaurant.respond_to?(:rating_img_url) ? restaurant.rating_img_url : "",
           image_url: restaurant.respond_to?(:image_url) ? restaurant.image_url : "",
@@ -36,5 +36,10 @@ class Session
     end
   end
 
+  def categories_to_string(array)
+    new_array = array.collect do |item|
+      item[0]
+    end
+  end
 
 end
