@@ -21,7 +21,7 @@ class Session
       # Reformat that Yelp object into hash with only the data we need
       self.restaurants = point_results.businesses.collect do |restaurant|
         {
-          name: restaurant.name
+          name: restaurant.name,
           rating: restaurant.rating,
           display_phone: restaurant.respond_to?(:display_phone) ? restaurant.phone : "",
           categories: restaurant.respond_to?(:categories) ? restaurant.categories : [],
