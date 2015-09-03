@@ -37,9 +37,10 @@ class Session
   end
 
   def categories_to_string(array)
-    new_array = array.collect do |item|
+    single_categories = array.collect do |item|
       item[0]
     end
+    single_categories.join(", ")
   end
 
 end
