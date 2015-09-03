@@ -1,2 +1,2 @@
-Session.new(origin: "Chicago",
+Session.create(origin: "Chicago",
             destination: "Bloomington")
