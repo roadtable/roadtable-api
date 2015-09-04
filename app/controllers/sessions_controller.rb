@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def show
     if params[:api_key]
-      render json: Session.where(:api_key => params[:api_key])
+      render json: Session.where(:api_key => params[:api_key]).first
     else
       render json: "An api key is needed for this request."
     end
