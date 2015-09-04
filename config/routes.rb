@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :sessions, only: [:index, :create]
+  resources :sessions, only: [:create]
 
   # route for testing
   root 'sessions#test'
