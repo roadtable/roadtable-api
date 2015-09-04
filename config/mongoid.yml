@@ -11,14 +11,14 @@ production:
     #    refresh_interval: 10
 
 development:
-  clients:
+  sessions:
     default:
       database: roadtable_api_development
       hosts:
         - localhost:27017
 
 test:
-  clients:
+  sessions:
     default:
       database: roadtable_api_test
       hosts:

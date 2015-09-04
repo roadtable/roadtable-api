@@ -4,19 +4,30 @@ class SessionsController < ApplicationController
   end
 
   def show
+    if params[:api_key]
+      render json: Session.where(:api_key => params[:api_key])
+    else
+      render json: "An api key is needed for this request."
+    end
   end
 
   def create
-    @session = Session.new(session_params)
-    @session.route = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + @session.origin + '&destination=' + @session.destination)
+    #Only execute if an api_key is passed
+    if params[:api_key]
+      @session = Session.new(session_params)
+      @session.api_key = params[:api_key]
+      @session.route = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + @session.origin + '&destination=' + @session.destination)
 
-    # Finds polyline string in route json
-    polyline = @session.route["routes"].last["overview_polyline"]["points"]
+      # Finds polyline string in route json
+      polyline = @session.route["routes"].last["overview_polyline"]["points"]
 
-    # Creates an array of polypoint arrays [lat,long]
-    polypoints = Polylines::Decoder.decode_polyline(polyline)
+      # Creates an array of polypoint arrays [lat,long]
+      polypoints = Polylines::Decoder.decode_polyline(polyline)
 
-    @session.get_restaurants(polypoints)
+      @session.get_restaurants(polypoints)
+    else
+      render json: "An api key is needed for this request."
+    end
 
     if @session.save
       render json: @session
@@ -32,7 +43,7 @@ class SessionsController < ApplicationController
   private
 
   def session_params
-    params.permit(:origin, :destination)
+    params.permit(:origin, :destination, :api_key)
   end
 
 end
