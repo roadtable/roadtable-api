@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     if params[:api_key]
       @session = Session.new(session_params)
       @session.api_key = params[:api_key]
-      @session.route = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + @session.origin + '&destination=' + @session.destination)
+      @session.route = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + @session.origin + '&destination=' + @session.destination, :verify => false)
 
       # Finds polyline string in route json
       polyline = @session.route["routes"].last["overview_polyline"]["points"]
