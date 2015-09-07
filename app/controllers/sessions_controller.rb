@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
 
   def add_to_list
     if params[:api_key]
-      @session = Session.where(:api_key => params[:api_key])
+      @session = Session.where(:api_key => params[:api_key]).first
       restaurant = @session.detect{|restaurant| restaurant["id"] = params[:id]}
       @session.restaurants << restaurant
       @session.save!
