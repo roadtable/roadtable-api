@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
   def add_to_list
     if params[:api_key]
       @session = Session.where(:api_key => params[:api_key]).first
-      restaurant = @session.restaurants.detect{|restaurant| restaurant["id"] = params[:id]}
+      restaurant = @session.restaurants.detect{|restaurant| restaurant["id"] == params[:id]}
       @session.list << restaurant
       @session.save!
     else
@@ -50,7 +50,7 @@ class SessionsController < ApplicationController
   def remove_from_list
     if params[:api_key]
       @session = Session.where(:api_key => params[:api_key]).first
-      restaurant = @session.list.detect{|restaurant| restaurant["id"] = params[:id]}
+      restaurant = @session.list.detect{|restaurant| restaurant["id"] == params[:id]}
       @session.list.delete(restaurant)
       @session.save!
     else
