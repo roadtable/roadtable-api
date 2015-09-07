@@ -47,6 +47,26 @@ class SessionsController < ApplicationController
     end
   end
 
+  def remove_from_list
+    if params[:api_key]
+      @session = Session.where(:api_key => params[:api_key]).first
+      restaurant = @session.list.detect{|restaurant| restaurant["id"] = params[:id]}
+      @session.list.delete(restaurant)
+      @session.save!
+    else
+      render json: "An api key is needed for this request."
+    end
+  end
+
+  def view_list
+    if params[:api_key]
+      @session = Session.where(:api_key => params[:api_key]).first
+      render json: @session.list
+    else
+      render json: "An api key is needed for this request."
+    end
+  end
+
   def test
     render json: Session.all[0]
   end
