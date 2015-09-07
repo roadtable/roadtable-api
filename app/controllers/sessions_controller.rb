@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def show
     if params[:api_key]
-      render json: Session.where(:api_key => params[:api_key])
+      render json: Session.where(:api_key => params[:api_key]).first
     else
       render json: "An api key is needed for this request."
     end
@@ -38,9 +38,9 @@ class SessionsController < ApplicationController
 
   def add_to_list
     if params[:api_key]
-      @session = Session.where(:api_key => params[:api_key])
-      restaurant = @session.detect{|restaurant| restaurant["id"] = params[:id]}
-      @session.restaurants << restaurant
+      @session = Session.where(:api_key => params[:api_key]).first
+      restaurant = @session.restaurants.detect{|restaurant| restaurant["id"] = params[:id]}
+      @session.list << restaurant
       @session.save!
     else
       render json: "An api key is needed for this request."
