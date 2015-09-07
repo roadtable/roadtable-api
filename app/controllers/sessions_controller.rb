@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
     if params[:api_key]
       @session = Session.where(:api_key => params[:api_key]).first
       restaurant = @session.restaurants.detect{|restaurant| restaurant["id"] = params[:id]}
-      @session.restaurants << restaurant
+      @session.list << restaurant
       @session.save!
     else
       render json: "An api key is needed for this request."
