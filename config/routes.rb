@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
-  resources :sessions, only: [:create]
+  # Create a new sessions
+  post 'sessions' => 'sessions#create'
+
+  # Custom show to include api_key
+  get '/sessions' => 'sessions#show' , as: :show
+
+  # User Lists
+  post '/sessions/add_to_list' => 'sessions#add_to_list', as: :add_to_list
+  post '/sessions/remove_from_list' => 'sessions#remove_from_list', as: :remove_from_list
+  get '/sessions/view_list' => 'sessions#view_list', as: :view_list
 
   # route for testing
   root 'sessions#test'
-
-  # custom show to include api_key
-  get '/sessions' => 'sessions#show' , as: :show
-
-  # custom route to add a restaurant to the session list
-  post '/sessions/add_to_list' => 'sessions#add_to_list', as: :add_to_list
 
 end
