@@ -5,6 +5,7 @@ class Session
   field :api_key, type: String
   field :route, type: Hash
   field :restaurants, type: Array, default: []
+  field :list, type: Array, default: []
 
   # Gets five restaurants near every nth poly point
   # Converts data to hash
@@ -21,6 +22,7 @@ class Session
       # Reformat that Yelp object into hash with only the data we need
       point_results.businesses.each do |restaurant|
         self.restaurants << {
+          id: restaurant.id,
           name: restaurant.name,
           rating: restaurant.rating,
           display_phone: restaurant.respond_to?(:display_phone) ? restaurant.phone : "",
