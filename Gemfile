@@ -10,3 +10,9 @@ gem 'polylines'
 gem 'httparty'
 gem 'yelp', require: 'yelp'
 gem 'rails_12factor', group: :production
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'mongoid-rspec', '~> 2.1.0'
+  gem 'airborne'
+end

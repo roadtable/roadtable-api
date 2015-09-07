@@ -30,8 +30,7 @@ class Session
           mobile_url: restaurant.respond_to?(:mobile_url) ? restaurant.mobile_url : "",
           rating_img_url: restaurant.respond_to?(:rating_img_url) ? restaurant.rating_img_url : "",
           image_url: restaurant.respond_to?(:image_url) ? restaurant.image_url : "",
-          display_address: restaurant.respond_to?(:display_address) ? restaurant.display_address : "",
-          mobile_url: restaurant.respond_to?(:mobile_url) ? restaurant.mobile_url : ""
+          display_address: restaurant.respond_to?(:display_address) ? restaurant.display_address : ""
         }
       end
       i += increment
