@@ -60,8 +60,7 @@ class SessionsController < ApplicationController
 
   def view_list
     if params[:api_key]
-      @session = Session.where(:api_key => params[:api_key]).first
-      render json: @session.list
+      render json: Session.where(:api_key => params[:api_key]).first
     else
       render json: "An api key is needed for this request."
     end
