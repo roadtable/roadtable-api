@@ -46,7 +46,7 @@ class Session
   end
 
   def remove_duplicate_restaurants
-    self.restaurants.uniq!{ |restaurant| restaurant["id"] }
+    self.restaurants.uniq!{ |restaurant| restaurant[:id] }
   end
 
 end
