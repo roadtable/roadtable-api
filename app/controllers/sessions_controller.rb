@@ -25,10 +25,11 @@ class SessionsController < ApplicationController
       polypoints = Polylines::Decoder.decode_polyline(polyline)
 
       @session.get_restaurants(polypoints)
+      @session.remove_duplicate_restaurants
     else
       render json: "An api key is needed for this request."
     end
-
+    
     if @session.save
       render json: @session
     else

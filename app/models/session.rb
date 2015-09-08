@@ -36,7 +36,6 @@ class Session
       end
       i += increment
     end
-    self.restaurants.uniq! { |restaurant| restaurant["id"] }
   end
 
   def categories_to_string(array)
@@ -44,6 +43,10 @@ class Session
       item[0]
     end
     single_categories.join(", ")
+  end
+
+  def remove_duplicate_restaurants
+    self.restaurants.uniq!{ |restaurant| restaurant["id"] }
   end
 
 end
