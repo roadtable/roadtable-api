@@ -36,6 +36,7 @@ class Session
       end
       i += increment
     end
+    self.restaurants.uniq
   end
 
   def categories_to_string(array)

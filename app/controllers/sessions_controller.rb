@@ -54,7 +54,7 @@ class SessionsController < ApplicationController
       @session.list.delete(restaurant)
       @session.save!
     else
-      render json: "An api key is needed for this request."
+      render json: "An api key is needed for this rddsequest."
     end
   end
 
