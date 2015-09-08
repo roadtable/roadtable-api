@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
     else
       render json: "An api key is needed for this request."
     end
-    
+
     if @session.save
       render json: @session
     else
@@ -65,10 +65,6 @@ class SessionsController < ApplicationController
     else
       render json: "An api key is needed for this request."
     end
-  end
-
-  def test
-    render json: Session.all[0]
   end
 
   private
