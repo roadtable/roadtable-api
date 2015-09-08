@@ -189,6 +189,3 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
   spring
   yelp
-
-BUNDLED WITH
-   1.10.6
