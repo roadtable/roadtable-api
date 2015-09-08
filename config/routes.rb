@@ -10,7 +10,4 @@ Rails.application.routes.draw do
   post '/sessions/remove_from_list' => 'sessions#remove_from_list', as: :remove_from_list
   get '/sessions/view_list' => 'sessions#view_list', as: :view_list
 
-  # route for testing
-  root 'sessions#test'
-
 end
