@@ -30,7 +30,8 @@ class Session
           mobile_url: restaurant.respond_to?(:mobile_url) ? restaurant.mobile_url : "",
           rating_img_url: restaurant.respond_to?(:rating_img_url) ? restaurant.rating_img_url : "",
           image_url: restaurant.respond_to?(:image_url) ? restaurant.image_url : "",
-          display_address: restaurant.respond_to?(:display_address) ? restaurant.display_address : ""
+          display_address: restaurant.respond_to?(:display_address) ? restaurant.display_address : "",
+          polypoint: { latitude: points[i].first, longitude: points[i].last }
         }
       end
       i += increment
