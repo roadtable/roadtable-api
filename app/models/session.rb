@@ -36,7 +36,7 @@ class Session
       end
       i += increment
     end
-    self.restaurants.uniq!
+    self.restaurants.uniq! { |restaurant| restaurant["id"] }
   end
 
   def categories_to_string(array)
