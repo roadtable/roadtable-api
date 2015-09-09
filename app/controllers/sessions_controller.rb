@@ -26,15 +26,17 @@ class SessionsController < ApplicationController
 
       @session.get_restaurants(polypoints)
       @session.remove_duplicate_restaurants
+
+      if @session.save
+        render json: @session
+      else
+        render json: "The origin/destination is invalid."
+      end
+      
     else
       render json: "An api key is needed for this request."
     end
 
-    if @session.save
-      render json: @session
-    else
-      render json: "The origin/destination is invalid."
-    end
   end
 
   def add_to_list
