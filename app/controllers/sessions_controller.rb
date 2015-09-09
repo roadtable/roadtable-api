@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
       else
         render json: "The origin/destination is invalid."
       end
-      
+
     else
       render json: "An api key is needed for this request."
     end
