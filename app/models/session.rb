@@ -29,7 +29,7 @@ class Session
           categories: restaurant.respond_to?(:categories) ? categories_to_string(restaurant.categories) : "",
           mobile_url: restaurant.respond_to?(:mobile_url) ? restaurant.mobile_url : "",
           rating_img_url: restaurant.respond_to?(:rating_img_url) ? restaurant.rating_img_url : "",
-          image_url: restaurant.respond_to?(:image_url) ? restaurant.image_url : "",
+          image_url: restaurant.respond_to?(:image_url) ? restaurant.image_url : "http://s3-media4.fl.yelpcdn.com/assets/srv0/yelp_styleguide/c73d296de521/assets/img/default_avatars/business_90_square.png",
           display_address: restaurant.respond_to?(:display_address) ? restaurant.display_address : "",
           polypoint: { latitude: points[i].first, longitude: points[i].last }
         }
