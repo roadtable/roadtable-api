@@ -4,10 +4,10 @@ class Route
   field :destination, type: String
   field :session_id, type: Integer
   field :directions, type: Hash
-  belongs_to: :session_id
-  embeds_many: :polypoints
-  embeds_many: :restaurants, store_as: "available_restaurants"
-  before_save: :get_directions
+  belongs_to :session_id
+  embeds_many :polypoints
+  embeds_many :restaurants, store_as: "available_restaurants"
+  before_save :get_directions
 
   def get_directions
     self.directions = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + self.origin + '&destination=' + self.destination, :verify => false)
