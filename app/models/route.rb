@@ -17,8 +17,8 @@ class Route
 
   def get_polypoints(polyline)
     points = Polylines::Decoder.decode_polyline(polyline)
-    points.each do |point|
-      @polypoint = Polypoint.find_or_create_by(coordinates: point)
+    (0...points.length).step(5).each do |index|
+      @polypoint = Polypoint.find_or_create_by(coordinates: points[index])
       self.polypoints << @polypoint
     end
     get_available_restaurants
