@@ -41,14 +41,6 @@ class Session
   #   end
   # end
 
-  # TO RESTAURANT
-  # def categories_to_string(array)
-  #   single_categories = array.collect do |item|
-  #     item[0]
-  #   end
-  #   single_categories.join(", ")
-  # end
-
   # TO ROUTE
   # def remove_duplicate_restaurants
   #   self.restaurants.uniq!{ |restaurant| restaurant[:id] }
