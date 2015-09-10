@@ -4,12 +4,13 @@ class Route
   field :destination, type: String
   field :session_id, type: Integer
   field :directions, type: Hash
-  belongs_to :session_id
+  belongs_to :session
   embeds_many :polypoints
-  embeds_many :restaurants, store_as: "available_restaurants"
+  embeds_many :restaurants
   before_save :get_directions
 
   def get_directions
+    puts "Hey from Route!"
     self.directions = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + self.origin + '&destination=' + self.destination, :verify => false)
     polyline = self.directions["routes"].last["overview_polyline"]["points"]
     get_polypoints(polyline)
@@ -25,8 +26,8 @@ class Route
   end
 
   def get_available_restaurants
-    self.polypoints.nearby_restaurants.each do |restaurant|
-      self.available_restaurants << restaurant
+    self.polypoints.each do |polypoint|
+      self.restaurants += polypoint.restaurants
     end
   end
 

@@ -6,22 +6,19 @@ class Restaurant
   field :mobile_url, type: String
   field :image_url, type: String
   field :rating_img_url, type: String
-  field :polypoint, type: Hash
+  field :alert_point, type: Hash
   field :address, type: String
   embedded_in :session
   embedded_in :route
   embedded_in :polypoint
 
-  before_save :categories_to_string
-  before_save :address_to_string
-
   # Turn array of categories into a string
-  def categories_to_string
-    self.categories.collect! { |item| item[0] }.join(", ")
+  def self.categories_to_string(array)
+    array.collect! { |item| item[0] }.join(", ")
   end
 
-  def address_to_string
-    self.address.join(", ")
+  def self.address_to_string(address)
+    address.join(" ")
   end
 
 end
