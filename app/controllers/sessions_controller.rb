@@ -22,10 +22,10 @@ class SessionsController < ApplicationController
 
   def update
     if params[:action] == "add"
-      restaurant = Restaurant.where(:id = params[:id]).first
+      restaurant = Restaurant.find_by(yelp_id: params[:yelp_id])
       @session.chosen_restaurants << restaurant
     elsif params[:action] == "delete"
-      restaurant = Restaurant.where(:id = params[:id]).first
+      restaurant = Restaurant.find_by(yelp_id: params[:yelp_id])
       @session.chosen_restaurants.delete(restaurant)
     else
       render json: "Invalid action."
