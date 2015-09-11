@@ -6,7 +6,6 @@ class Polypoint
   before_save :get_nearby_restaurants
 
   def get_nearby_restaurants
-    puts "I RAN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     point = self.coordinates
     point_hash = { latitude: point.first, longitude: point.last }
     # Returns BurstStruct object that Yelp creates

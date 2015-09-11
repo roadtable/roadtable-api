@@ -10,14 +10,13 @@ class Route
   before_save :get_directions
 
   def get_directions
-    puts "Hey from Route!"
     self.directions = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + self.origin + '&destination=' + self.destination, :verify => false)
     polyline = self.directions["routes"].last["overview_polyline"]["points"]
     get_polypoints(polyline)
   end
 
   def get_polypoints(polyline)
-    puts "Hey from get_polyline!"
+
     points_array = Polylines::Decoder.decode_polyline(polyline)
     (0...points_array.length).step(5).each do |index|
       @polypoint = Polypoint.find_or_initialize_by(coordinates: points_array[index])
@@ -27,7 +26,6 @@ class Route
   end
 
   def get_available_restaurants
-    puts "Hey from get_available_restaurants!"
     self.polypoints.each do |polypoint|
       self.restaurants += polypoint.restaurants
     end
