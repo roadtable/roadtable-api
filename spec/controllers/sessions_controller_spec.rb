@@ -27,6 +27,17 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
+  describe "UPDATE /sessions" do
+    it 'adds new restaurants to chosen restaurants' do
+      Session.all.destroy_all
+      post :create, { origin: "Indianapolis", destination: "Chicago", api_key: "1" }
+      session = Session.last
+      post :update, { api_key: "1", action: "add", yelp_id: "#{session.route.polypoints.first.nearby_restaurants.first.yelp_id}" }
+      get :show, { api_key: "1" }
+      expect_json_sizes(chosen_restaurants: 1)
+    end
+  end
+
 
 
 end
