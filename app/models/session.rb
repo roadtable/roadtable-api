@@ -3,5 +3,5 @@ class Session
   field :api_key, type: String
   has_one :route
   embeds_many :restaurants
-  alias :chosen_restaurants :restaurants
+  alias_method :chosen_restaurants, :restaurants
 end

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
 
   def set_session
     if params[:api_key]
-      if Session.where(:api_key => params[:api_key])
+      unless Session.where(:api_key => params[:api_key]) == []
         @session = Session.where(:api_key => params[:api_key]).first
       else
         render json: "Invalid api key."

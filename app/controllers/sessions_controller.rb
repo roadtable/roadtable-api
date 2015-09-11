@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
   def create
     if params[:api_key]
       @session = Session.new(api_key: params[:api_key])
-      # @session.api_key = params[:api_key]
       Route.create(origin: params[:origin], destination: params[:destination], session_id: @session.id)
       if @session.save
         render json: { status: 200 }
@@ -21,12 +20,14 @@ class SessionsController < ApplicationController
   end
 
   def update
-    if params[:action] == "add"
-      restaurant = Restaurant.find_by(yelp_id: params[:yelp_id])
+    if params[:akushon] == "add"
+      restaurant = @session.route.available_restaurants.where(yelp_id: params[:yelp_id]).first
       @session.chosen_restaurants << restaurant
-    elsif params[:action] == "delete"
-      restaurant = Restaurant.find_by(yelp_id: params[:yelp_id])
+      @session.save
+    elsif params[:akushon] == "delete"
+      restaurant = @session.route.available_restaurants.where(yelp_id: params[:yelp_id]).first
       @session.chosen_restaurants.delete(restaurant)
+      @session.save
     else
       render json: "Invalid action."
     end
