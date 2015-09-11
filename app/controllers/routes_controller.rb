@@ -1,7 +1,7 @@
 class RoutesController < ApplicationController
 
   def show
-    @restaurants = @session.route.available_restaurants
+    @restaurants = @session.route.restaurants
     render json: @restaurants
   end
 
