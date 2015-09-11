@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     if params[:api_key]
-      @session = Session.new(api_key: params[:api_key])
+      @session = Session.new(session_params)
       Route.create(origin: params[:origin], destination: params[:destination], session_id: @session.id)
       if @session.save
         render json: { status: 200 }
@@ -22,8 +22,8 @@ class SessionsController < ApplicationController
   def update
     if params[:akushon] == "add"
       restaurant = @session.route.available_restaurants.where(yelp_id: params[:yelp_id]).first
-      @session.chosen_restaurants << restaurant
-      @session.save
+      # This is not ideal, but is a workaround for https://github.com/apotonick/reform/issues/143
+      @session.chosen_restaurants.batch_insert([restaurant])
     elsif params[:akushon] == "delete"
       restaurant = @session.route.available_restaurants.where(yelp_id: params[:yelp_id]).first
       @session.chosen_restaurants.delete(restaurant)
@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
   private
 
   def session_params
-    params.permit(:origin, :destination, :api_key)
+    params.permit(:api_key)
   end
 
 end

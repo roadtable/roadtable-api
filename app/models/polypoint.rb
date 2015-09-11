@@ -1,6 +1,5 @@
 class Polypoint
   include Mongoid::Document
-  include MongoidExtendedDirtyTrackable
   field :coordinates, type: Array
   embeds_many :restaurants
   alias :nearby_restaurants :restaurants

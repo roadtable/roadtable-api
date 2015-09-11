@@ -34,23 +34,19 @@ RSpec.describe SessionsController, type: :controller do
       restaurant = session.route.available_restaurants.first
       patch :update, { api_key: "1", akushon: "add", yelp_id: restaurant.yelp_id }
 
-      expect(session.restaurants.first).to eq(restaurant)
-      expect(session.restaurants.count).to eq(1)
+      expect(session.chosen_restaurants.first).to eq(restaurant)
+      expect(session.chosen_restaurants.count).to eq(1)
     end
 
-    # it 'removes restaurant from chosen restaurants' do
-    #   Session.all.destroy_all
-    #   post :create, { origin: "Indianapolis", destination: "Chicago", api_key: "1" }
-    #   session = Session.last
-    #   restaurant = Restaurant.where(yelp_id: session.route.polypoints.first.nearby_restaurants.first.yelp_id).first
-    #   # Add the restaurant
-    #   patch :update, { api_key: "1", akushon: "add", yelp_id: session.route.polypoints.first.nearby_restaurants.first.yelp_id }
-    #   expect(session.chosen_restaurants.first).to eq(restaurant)
-    #   expect(session.chosen_restaurants.count).to eq(1)
-    #   # Delete the restaurant
-    #   patch :update, { api_key: "1", akushon: "delete", yelp_id: session.route.polypoints.first.nearby_restaurants.first.yelp_id }
-    #   expect(session.chosen_restaurants.count).to eq(0)
-    # end
+    it 'removes restaurant from chosen restaurants' do
+      session = Session.create(api_key: "1")
+      session.route = Route.create(origin: "Indianapolis", destination: "Chicago", session_id: session.id)
+      restaurant = session.route.available_restaurants.first
+      session.chosen_restaurants.batch_insert([restaurant])
+      # Delete the restaurant
+      patch :update, { api_key: "1", akushon: "delete", yelp_id: restaurant.yelp_id }
+      expect(session.chosen_restaurants.count).to eq(0)
+    end
   end
 
 
