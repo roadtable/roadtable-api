@@ -15,4 +15,5 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'mongoid-rspec', '~> 2.1.0'
   gem 'airborne'
+  gem 'pry-byebug'
 end

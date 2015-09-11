@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action, only: :create
+  skip_before_action :set_session, only: :create
 
   def show
     render json: @session.chosen_restaurants
@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
 
   def create
     if params[:api_key]
-      @session = Session.new(session_params)
-      @session.api_key = params[:api_key]
-      @session.route = Route.create(origin: params[:origin], destination: params[:destination])
+      @session = Session.new(api_key: params[:api_key])
+      # @session.api_key = params[:api_key]
+      Route.create(origin: params[:origin], destination: params[:destination], session_id: @session.id)
       if @session.save
-        render status: 200
+        render json: { status: 200 }
       else
         render json: "The origin/destination is invalid."
       end

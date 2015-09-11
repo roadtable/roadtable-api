@@ -4,9 +4,9 @@ class Route
   field :destination, type: String
   field :session_id, type: Integer
   field :directions, type: Hash
-  belongs_to :session_id
-  embeds_many :polypoints
-  embeds_many :restaurants, store_as: "available_restaurants"
+  belongs_to :session
+  has_and_belongs_to_many :polypoints, inverse_of: nil
+  embeds_many :restaurants, as: :available_restaurants
   before_save :get_directions
 
   def get_directions
@@ -16,17 +16,18 @@ class Route
   end
 
   def get_polypoints(polyline)
-    points = Polylines::Decoder.decode_polyline(polyline)
-    (0...points.length).step(5).each do |index|
-      @polypoint = Polypoint.find_or_create_by(coordinates: points[index])
+
+    points_array = Polylines::Decoder.decode_polyline(polyline)
+    (0...points_array.length).step(5).each do |index|
+      @polypoint = Polypoint.find_or_initialize_by(coordinates: points_array[index])
       self.polypoints << @polypoint
     end
     get_available_restaurants
   end
 
   def get_available_restaurants
-    self.polypoints.nearby_restaurants.each do |restaurant|
-      self.available_restaurants << restaurant
+    self.polypoints.each do |polypoint|
+      self.restaurants += polypoint.restaurants
     end
   end
 
