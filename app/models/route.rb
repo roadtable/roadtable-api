@@ -8,6 +8,8 @@ class Route
   has_and_belongs_to_many :polypoints, inverse_of: nil
   embeds_many :restaurants
   alias :available_restaurants :restaurants
+  validates_presence_of :origin
+  validates_presence_of :destination
   before_save :get_directions
 
   def get_directions
