@@ -1,5 +1,6 @@
 class Route
   include Mongoid::Document
+  include MongoidExtendedDirtyTrackable
   field :origin, type: String
   field :destination, type: String
   field :session_id, type: Integer
