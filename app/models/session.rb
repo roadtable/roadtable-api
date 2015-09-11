@@ -1,8 +1,11 @@
 class Session
   include Mongoid::Document
-  # include MongoidExtendedDirtyTrackable
+  #Database columns
   field :api_key, type: String
-  has_one :route
+  #Embedded documents
   embeds_many :restaurants
-  alias_method :chosen_restaurants, :restaurants
+  alias :chosen_restaurants :restaurants
+  #Relations
+  has_one :route
+
 end
