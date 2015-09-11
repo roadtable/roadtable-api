@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :routes, except: [:new, :edit]
+  resources :routes, only: [:show]
   # Create a new sessions
   post 'sessions' => 'sessions#create'
 

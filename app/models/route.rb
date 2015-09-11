@@ -6,7 +6,8 @@ class Route
   field :directions, type: Hash
   belongs_to :session
   has_and_belongs_to_many :polypoints, inverse_of: nil
-  embeds_many :restaurants, as: :available_restaurants
+  embeds_many :restaurants
+  alias :available_restaurants :restaurants
   before_save :get_directions
 
   def get_directions
