@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     if params[:api_key]
-      @session = Session.new(session_params)
+      @session = Session.new(api_key: params[:api_key])
       Route.create(origin: params[:origin], destination: params[:destination], session_id: @session.id)
       if @session.save
         render json: { status: 200 }
