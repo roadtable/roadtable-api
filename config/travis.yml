@@ -2,27 +2,13 @@ language: ruby
 
 sudo: false
 
-# We deviate from the rspec-dev cache setting here.
-#
-# Travis has special bundler support where it knows to run `bundle clean`
-# before backing up the bundle so it doesn't grow indefinitely.
-#
-# For the other repos we changed to specifying the directory specifically to
-# avoid the `bundle clean` travis was doing, because Myron found that, when
-# running one of the a build for one repo, the "run the rspec-core and
-# rspec-rails spec suites" parts would take a while because it would _always_
-# have to install fresh gems (they weren't in the cache). This was happening
-# because travis was running `bundle clean` (due to the previous `cache:
-# bundler` config) against one repo which was was pruning gems installed for
-# the other repos.
-#
-# In our case, we aren't running the spec suites for the other repos so the
-# original `cache: bundler` is a better option.
 cache: bundler
 
-bundler_args: "--binstubs --without documentation --path ../bundle --retry=3 --jobs=3"
+bundler_args: "--binstubs --without documentation --path ../bundle install --jobs=3 --retry=3"
 
-before_install: "script/clone_all_rspec_repos"
+before_install:
+  - gem update --system
+  - gem --version
 
 before_script:
   # Rails 4.x complains with a bundler rails binstub in PROJECT_ROOT/bin/
@@ -33,7 +19,6 @@ script: "script/run_build 2>&1"
 
 rvm:
   - 2.2.2
-  
 env:
   - RAILS_VERSION='~> 4.2.0'
 
@@ -48,4 +33,3 @@ matrix:
 branches:
   only:
     - master
-    - /^\d+-\d+-maintenance$/
