@@ -20,4 +20,9 @@ RSpec.describe Route, type: :model do
     expect(route).to respond_to(:polypoints)
     expect(route).to respond_to(:available_restaurants)
   end
+  it 'adds unique restaurants to available_restaurants' do
+    Route.all.destroy_all
+    route = Route.create(:origin => "Indianapolis", :destination => "Bloomington")
+    expect(route.available_restaurants.uniq.count). to eq(route.available_restaurants.count)
+  end
 end

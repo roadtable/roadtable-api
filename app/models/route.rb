@@ -39,7 +39,9 @@ class Route
 
   def get_available_restaurants
     self.polypoints.each do |polypoint|
-      self.restaurants += polypoint.restaurants
+      polypoint.restaurants.each do |restaurant|
+        self.restaurants << restaurant unless self.restaurants.include?(restaurant)
+      end
     end
   end
 

@@ -11,7 +11,7 @@ class Restaurant
   embedded_in :session
   embedded_in :route
   embedded_in :polypoint
-  index({ yelp_id: "unique" }, { unique: true, drop_dups: true })
+
 
   # Turn array of categories into a string
   def self.categories_to_string(array)
