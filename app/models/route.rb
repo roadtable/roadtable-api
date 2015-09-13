@@ -41,7 +41,11 @@ class Route
     self.polypoints.each do |polypoint|
       self.restaurants += polypoint.restaurants
     end
-    self.restaurants.uniq! { |rest| rest.yelp_id }
+    uniqify_restaurants
+  end
+
+  def uniqify_restaurants
+    self.restaurants.uniq!{ |rest| rest.yelp_id }
   end
 
 end
