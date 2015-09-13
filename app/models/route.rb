@@ -39,10 +39,9 @@ class Route
 
   def get_available_restaurants
     self.polypoints.each do |polypoint|
-      polypoint.restaurants.each do |restaurant|
-        self.restaurants << restaurant unless self.restaurants.include?(restaurant)
-      end
+      self.restaurants += polypoint.restaurants
     end
+    self.restaurants.uniq! { |rest| rest.yelp_id }
   end
 
 end
