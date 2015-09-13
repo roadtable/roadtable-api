@@ -23,7 +23,8 @@ RSpec.describe Route, type: :model do
   it 'adds unique restaurants to available_restaurants' do
     Route.all.destroy_all
     route = Route.create(:origin => "Bloomington, IN", :destination => "Columbus, IN")
-    expect(route.available_restaurants.where(yelp_id: "turkuaz-cafe-bloomington").count). to eq(1)
+    restaurant_search = route.available_restaurants.where(yelp_id: "turkuaz-cafe-bloomington")
+    expect(restaurant_search.count).to eq(1)
     expect(route.available_restaurants.uniq!).to eq(nil)
   end
 end
