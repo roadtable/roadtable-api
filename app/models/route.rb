@@ -45,7 +45,7 @@ class Route
   end
 
   def uniqify_restaurants
-    self.restaurants.uniq!{ |rest| rest.yelp_id }
+    self.restaurants = self.restaurants.uniq { |rest| rest.yelp_id }
   end
 
 end
