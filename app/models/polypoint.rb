@@ -1,9 +1,17 @@
 class Polypoint
   include Mongoid::Document
+
+  #Database columns
   field :coordinates, type: Array
+
+  #Embedded documents
   embeds_many :restaurants
   alias :nearby_restaurants :restaurants
+
+  #Relations
   belongs_to :route
+
+  #Callbacks
   before_save :get_nearby_restaurants
 
   def get_nearby_restaurants

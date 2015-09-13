@@ -1,0 +1,35 @@
+language: ruby
+
+sudo: false
+
+cache: bundler
+
+bundler_args: "--binstubs --without documentation --path ../bundle install --jobs=3 --retry=3"
+
+before_install:
+  - gem update --system
+  - gem --version
+
+before_script:
+  # Rails 4.x complains with a bundler rails binstub in PROJECT_ROOT/bin/
+  - rm -f bin/rails
+  - bundle exec rails --version
+
+script: "script/run_build 2>&1"
+
+rvm:
+  - 2.2.2
+env:
+  - RAILS_VERSION='~> 4.2.0'
+
+matrix:
+  exclude:
+    # 3.0.x is not supported on MRI 2.0+
+    - rvm: 2.2.2
+      env: RAILS_VERSION='~> 4.2.0'
+
+  fast_finish: true
+
+branches:
+  only:
+    - master
