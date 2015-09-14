@@ -5,7 +5,7 @@ class RoutesController < ApplicationController
       @filtered_restaurants = @session.route.available_restaurants.select do |r|
         r.name.include?(filter) || r.name.include?(filter.capitalize) || r.categories.include?(filter) || r.categories.include?(filter.capitalize)
       end
-      
+
       render json: @filtered_restaurants
     else
       @restaurants = @session.route.available_restaurants
