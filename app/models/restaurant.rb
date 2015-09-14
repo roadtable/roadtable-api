@@ -12,7 +12,6 @@ class Restaurant
   embedded_in :route
   embedded_in :polypoint
 
-
   # Turn array of categories into a string
   def self.categories_to_string(array)
     array.collect! { |item| item[0] }.join(", ")
