@@ -39,13 +39,12 @@ class Route
 
   def get_available_restaurants
     self.polypoints.each do |polypoint|
-      self.restaurants += polypoint.restaurants
+      polypoint.restaurants.each do |restaurant|
+        if self.restaurants.where(yelp_id: restaurant.yelp_id).empty?
+          self.restaurants << restaurant
+        end
+      end
     end
-    uniqify_restaurants
-  end
-
-  def uniqify_restaurants
-    self.restaurants.uniq!{ |rest| rest.yelp_id }
   end
 
 end

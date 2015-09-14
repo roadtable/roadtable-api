@@ -22,4 +22,5 @@ class Restaurant
     address.join(" ")
   end
 
+
 end
