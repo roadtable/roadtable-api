@@ -22,6 +22,8 @@ class Route
   #Callbacks
   before_save :get_directions
 
+  #Scopes
+
   def get_directions
     self.directions = HTTParty.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + self.origin + '&destination=' + self.destination, :verify => false)
     polyline = self.directions["routes"].last["overview_polyline"]["points"]
