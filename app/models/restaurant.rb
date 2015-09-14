@@ -12,6 +12,10 @@ class Restaurant
   embedded_in :route
   embedded_in :polypoint
 
+  #Scopes
+  scope :name_filter, -> (name) { where name: "/.*#{name}.*/i)" }
+  scope :categories_filter, -> (category) { where categories: "/.*#{category}.*/i)" }
+
 
   # Turn array of categories into a string
   def self.categories_to_string(array)
