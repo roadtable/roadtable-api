@@ -7,6 +7,5 @@ Rails.application.routes.draw do
 
   # Routes
   get 'routes' => 'routes#show'
-  get 'routes/filter' => 'routes#filter'
 
 end
