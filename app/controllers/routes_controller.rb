@@ -5,11 +5,8 @@ class RoutesController < ApplicationController
       @filtered_restaurants = @session.route.available_restaurants.select do |r|
         r.name.include?(filter) || r.name.include?(filter.capitalize) || r.categories.include?(filter) || r.categories.include?(filter.capitalize)
       end
-      if @filtered_restaurants.empty?
-        render json: {errors: "No restaurants were found under '#{filter}'."}
-      else
-        render json: @filtered_restaurants
-      end
+      #Have app render an error on empty array
+      render json: @filtered_restaurants
     else
       @restaurants = @session.route.available_restaurants
       render json: @restaurants
