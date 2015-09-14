@@ -1,8 +1,14 @@
 language: ruby
-bundler_args: --without guard
+bundler_args: --without guard figaro --travis
 rvm:
   - "2.2.2"
   - ruby-head
+env:
+  CONSUMER_KEY: Figaro.env('CONSUMER_KEY')
+  CONSUMER_SECRET: Figaro.env('CONSUMER_SECRET')
+  TOKEN: Figaro.env('TOKEN')
+  TOKEN_SECRET: Figaro.env('TOKEN_SECRET')
+
 script: "bundle exec rspec"
 
 branches:
