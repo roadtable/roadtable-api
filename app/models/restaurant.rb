@@ -18,7 +18,7 @@ class Restaurant
   end
 
   def self.address_to_string(address)
-    address.join(" ")
+    URI.escape(address.join(" "))
   end
 
 

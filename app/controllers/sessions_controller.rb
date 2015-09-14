@@ -12,10 +12,10 @@ class SessionsController < ApplicationController
       if @session.save
         render json: { status: 200 }
       else
-        render json: "The origin/destination is invalid."
+        render json: {errors: "The origin/destination is invalid."}
       end
     else
-      "An api key is needed for this action."
+      render json: { errors: "An api key is needed for this action." }
     end
   end
 
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
       @session.chosen_restaurants.delete(restaurant)
       @session.save
     else
-      render json: "Invalid action."
+      render json: { errors: "Invalid action." }
     end
   end
 
