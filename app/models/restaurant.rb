@@ -1,5 +1,6 @@
 class Restaurant
   include Mongoid::Document
+  include Filterable
   field :yelp_id, type: String
   field :name, type: String
   field :categories, type: String
@@ -21,5 +22,6 @@ class Restaurant
   def self.address_to_string(address)
     address.join(" ")
   end
+
 
 end

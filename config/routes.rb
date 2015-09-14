@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # Sessions
   get 'sessions' => 'sessions#show'
   post 'sessions' => 'sessions#create'
@@ -7,5 +7,6 @@ Rails.application.routes.draw do
 
   # Routes
   get 'routes' => 'routes#show'
+  get 'routes/filter' => 'routes#filter'
 
 end
