@@ -1,6 +1,5 @@
 class Restaurant
   include Mongoid::Document
-  include Filterable
   field :yelp_id, type: String
   field :name, type: String
   field :categories, type: String

@@ -45,11 +45,6 @@ class Route
         end
       end
     end
-    # uniqify_restaurants
   end
-
-  # def uniqify_restaurants
-  #   self.restaurants = self.restaurants.uniq { |rest| rest.yelp_id }
-  # end
 
 end
