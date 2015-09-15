@@ -8,8 +8,8 @@ class SessionsController < ApplicationController
   def create
     if params[:api_key]
       @session = Session.create(api_key: params[:api_key])
-      @route = Route.new(origin: params[:origin], destination: params[:destination], session_id: @session.id)
-      if @route.save
+      @route = Route.create(origin: params[:origin], destination: params[:destination], session_id: @session.id)
+      if @session.save
         render json: { status: 200 }
       else
         render json: { errors: "The origin/destination is invalid.", status: 500 }

@@ -19,7 +19,8 @@ class Polypoint
     point_hash = { latitude: point.first, longitude: point.last }
     # Returns BurstStruct object that Yelp creates
     # Contains Top 5 restaurants in a 5 mile radius
-    point_results = Yelp.client.search_by_coordinates(point_hash, { limit: 5, term: "restaurants", sort: 2, radius_filter: 8000 })
+    params = { term: "restaurants", limit: 5, sort: 2, radius_filter: 8000 }
+    point_results = Yelp.client.search_by_coordinates( point_hash, params )
     point_results.businesses.each do |restaurant|
         @restaurant = Restaurant.new(
         yelp_id: restaurant.id,
