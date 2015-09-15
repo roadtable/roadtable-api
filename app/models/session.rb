@@ -7,5 +7,7 @@ class Session
   alias :chosen_restaurants :restaurants
   #Relations
   has_one :route
+  #Validations
+  validates_presence_of :api_key
 
 end
