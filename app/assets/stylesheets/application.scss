@@ -77,11 +77,17 @@ html, body {
 	min-height: 100%;
 	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
 	height: 100%;
-	margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+	margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
 }
 .footer, .push {
-	height: 100px; /* .push must be the same height as .footer */
+	height: 50px; /* .push must be the same height as .footer */
   color: $tan;
+  padding-top: 12px;
+}
+
+.sm-logo {
+  width: 150px;
+  height: auto;
 }
 
 // Smaller devices
