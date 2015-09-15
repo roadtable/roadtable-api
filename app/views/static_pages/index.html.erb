@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RoadTable</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="wrapper">
+
+
+    <div class="container-fluid intro">
+      <div class="row">
+
+      </div>
+      <div class="row">
+        <div class="col-md-8 headline-container">
+          <%= image_tag "dark_logo.png", class: "logo" %>
+          <h1>RoadTable is a native iOS application powered by a RESTful Ruby on Rails API.</h1>
+          <h4>
+            All source code for this project can be found on
+            <a target="_blank" href="http://www.github.com/roadtable">GitHub</a>.
+          </h4>
+        </div>
+        <div class="col-md-4 text-center iphone-container">
+          <%= image_tag "iphone.png", class: "mock-iphone img-responsive" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid video-section">
+      <div class="row">
+        <div class="col-md-6 col-md-push-6 see-it-container text-center">
+          <h2>See it in action.</h2>
+        </div>
+        <div class="col-md-6 col-md-pull-6 video-container">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="video" width="420" height="315" src="https://www.youtube.com/embed/CFcR96SPF2w" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid bio-section">
+      <div class="row text-center">
+        <h2>Meet the Makers</h2>
+      </div>
+      <div class="row top-margin">
+        <div class="col-md-4 col-md-offset-2 text-center">
+          <%= image_tag "http://placebacon.net/250/250" %>
+          <h2>Danny Beyrer</h2>
+          <p><a target="_blank" href="http://www.github.com/beyrerdn">GitHub</a></p>
+          <p><a target="_blank" href="https://www.linkedin.com/in/danielbeyrer">LinkedIn</a></p>
+          <p><a target="_blank" href="http://dannybeyrer.ghost.io/">Blog</a></p>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <%= image_tag "caleb_headshot.jpg", class: "headshot" %>
+          <h2>Caleb Francis</h2>
+          <p><a target="_blank" href="http://www.github.com/calebonesimus">GitHub</a></p>
+          <p><a target="_blank" href="https://www.linkedin.com/in/calebfrancis">LinkedIn</a></p>
+          <p><a target="_blank" href="http://www.calebfrancis.com">Blog</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="push"></div>
+  </div>
+
+  <div class="footer container-fluid">
+
+  </div>
+
+</body>
+</html>
