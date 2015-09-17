@@ -19,6 +19,7 @@ $grey: #3E3E3E;
   background-color: $tan;
   margin-top: -20px;
   padding: 30px;
+  padding-top: 50px;
 }
 
 .logo {
@@ -62,6 +63,16 @@ $grey: #3E3E3E;
 .headshot {
   width: 250;
   height: 250px;
+}
+
+.bio-links {
+  padding: 0px;
+  margin: 0px;
+  li {
+    list-style-type: none;
+    display: inline;
+    padding: 0px 8px;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
