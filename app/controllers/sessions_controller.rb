@@ -23,7 +23,9 @@ class SessionsController < ApplicationController
     if params[:akushon] == "add"
       restaurant = @session.route.available_restaurants.where(yelp_id: params[:yelp_id]).first
       # This is not ideal, but is a workaround for https://github.com/apotonick/reform/issues/143
-      @session.chosen_restaurants.batch_insert([restaurant])
+      unless @session.chosen_restaurants.include?(restaurant)
+        @session.chosen_restaurants.batch_insert([restaurant])
+      end
     elsif params[:akushon] == "delete"
       restaurant = @session.route.available_restaurants.where(yelp_id: params[:yelp_id]).first
       @session.chosen_restaurants.delete(restaurant)
